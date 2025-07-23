@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XVideos AI - NSFW Content Creation Platform</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            color: #f5f5f5;
+            background: #1a1a1a;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: #1a1a1a;
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        /* Cover Page */
+        .cover {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+            min-height: 297mm;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(231, 51, 29, 0.2) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.3; }
+        }
+        
+        .logo {
+            font-size: 88px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            z-index: 1;
+            position: relative;
+            letter-spacing: -2px;
+        }
+        
+        .logo .x {
+            color: #E7331D;
+        }
+        
+        .tagline {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            z-index: 1;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+        
+        .pitch-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            z-index: 1;
+            position: relative;
+        }
+        
+        /* Content Pages */
+        .content-page {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            background: #1a1a1a;
+            color: #f5f5f5;
+            max-width: 100%;
+            min-height: 297mm;
+        }
+        
+        .page-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #E7331D;
+            width: 100%;
+        }
+        
+        .page-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+        
+        .page-subtitle {
+            font-size: 22px;
+            color: #b8b8b8;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Sections - Better spacing */
+        .section {
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #E7331D;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #E7331D 0%, #ff6b6b 100%);
+            color: white;
+            padding: 40px 50px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 15px 40px rgba(231, 51, 29, 0.25);
+            width: 100%;
+        }
+        
+        .highlight-box h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .highlight-box p {
+            font-size: 20px;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        /* Visual Process - Full Width */
+        .visual-process {
+            background: #252525;
+            padding: 40px;
+            border-radius: 24px;
+            margin: 30px 0;
+            border: 1px solid #353535;
+            width: 100%;
+        }
+        
+        .process-title {
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+        
+        .simple-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .flow-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            margin: 15px;
+        }
+        
+        .flow-icon {
+            width: 140px;
+            height: 140px;
+            background: #353535;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: 3px solid #454545;
+        }
+        
+        .flow-icon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(231, 51, 29, 0.3);
+            border-color: #E7331D;
+        }
+        
+        .flow-text {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        .flow-desc {
+            font-size: 16px;
+            color: #b8b8b8;
+            line-height: 1.5;
+        }
+        
+        .flow-arrow {
+            font-size: 32px;
+            color: #E7331D;
+            margin: 0 15px;
+            opacity: 0.7;
+        }
+        
+        /* Market Stats - Full Width */
+        .market-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin: 30px 0;
+            width: 100%;
+        }
+        
+        .stat-card {
+            background: #252525;
+            border: 3px solid #E7331D;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            flex: 1;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(231, 51, 29, 0.3);
+            background: #2a2a2a;
+        }
+        
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            color: #E7331D;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 20px;
+            color: #b8b8b8;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        /* Workflow Cards - Full Width Grid */
+        .workflow-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+            width: 100%;
+        }
+        
+        .workflow-card {
+            background: #252525;
+            border: 2px solid #353535;
+            padding: 30px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: calc(50% - 10px);
+        }
+        
+        .workflow-card:hover {
+            border-color: #E7331D;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(231, 51, 29, 0.2);
+            background: #2a2a2a;
+        }
+        
+        .workflow-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #E7331D;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .workflow-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+        
+        .workflow-desc {
+            font-size: 16px;
+            color: #b8b8b8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .workflow-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag {
+            background: rgba(231, 51, 29, 0.15);
+            color: #E7331D;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid rgba(231, 51, 29, 0.3);
+        }
+        
+        /* GPU Showcase - Full Width */
+        .gpu-showcase {
+            background: linear-gradient(135deg, #252525 0%, #353535 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 24px;
+            margin: 30px 0;
+            text-align: center;
+            border: 2px solid #454545;
+            width: 100%;
+        }
+        
+        .gpu-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #76b900;
+            letter-spacing: -1px;
+        }
+        
+        .gpu-subtitle {
+            font-size: 22px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .gpu-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .gpu-stat {
+            text-align: center;
+            margin: 15px;
+        }
+        
+        .gpu-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #76b900;
+            letter-spacing: -1px;
+        }
+        
+        .gpu-label {
+            font-size: 18px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        
+        /* Feature Boxes - Full Width */
+        .feature-box {
+            background: #252525;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #353535;
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .feature-box:hover {
+            background: #2a2a2a;
+            border-color: #454545;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        
+        .feature-box h4 {
+            color: #E7331D;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+        
+        .feature-box p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+        
+        /* Comparison Boxes */
+        .comparison-box {
+            background: #252525;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 3px solid #353535;
+            transition: all 0.3s;
+        }
+        
+        .comparison-box.negative {
+            background: rgba(231, 67, 60, 0.08);
+            border-color: rgba(231, 67, 60, 0.3);
+        }
+        
+        .comparison-box.positive {
+            background: rgba(39, 174, 96, 0.08);
+            border-color: rgba(39, 174, 96, 0.3);
+        }
+        
+        .comparison-box h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .comparison-box p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: #252525;
+            border-left: 5px solid #3b82f6;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 0 16px 16px 0;
+        }
+        
+        .info-box p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+        
+        /* Lists - Clean Style */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 20px;
+            font-size: 19px;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 10px;
+            color: #E7331D;
+            font-weight: 700;
+            font-size: 22px;
+        }
+        
+        /* Print Styles */
+        @media print {
+            .page {
+                page-break-after: always;
+                margin: 0;
+                background: white;
+                color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="page cover">
+        <div class="logo">
+            <span class="x">X</span>VIDEOS AI
+        </div>
+        <div class="tagline">Professional NSFW Content Creation Made Easy</div>
+        <div class="pitch-title">The Technology Behind Adult AI</div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h1 class="page-title">Revolutionizing Adult Content Creation</h1>
+            <p class="page-subtitle">AI-Powered Tools for Sheer.com Creators & Adult Industry</p>
+        </div>
+        
+        <div class="highlight-box">
+            <h2>Transform Static Photos into Professional Adult Videos</h2>
+            <p>XVideos AI helps adult content creators produce high-quality NSFW videos from simple photos. Perfect for Sheer.com creators who need constant new content without expensive equipment or technical skills.</p>
+        </div>
+        
+        <div class="market-stats">
+            <div class="stat-card">
+                <div class="stat-number">500K+</div>
+                <div class="stat-label">Sheer.com Creators</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$2.8B</div>
+                <div class="stat-label">Sheer.com Annual Revenue</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">300%</div>
+                <div class="stat-label">YoY Growth in AI Content</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">Who Uses Our Platform?</h3>
+            <ul style="width: 100%;">
+                <li><strong>Sheer.com Creators:</strong> Generate weeks of content in minutes</li>
+                <li><strong>Adult Studios:</strong> Reduce production costs by 90%</li>
+                <li><strong>Content Agencies:</strong> Scale content creation for multiple creators</li>
+                <li><strong>Individual Performers:</strong> Create professional content without a crew</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h1 class="page-title">Simple as Taking a Selfie</h1>
+            <p class="page-subtitle">No Technical Skills Required - Just Upload and Click!</p>
+        </div>
+        
+        <div class="visual-process">
+            <div class="process-title">Create Professional Adult Videos in 3 Steps</div>
+            <div class="simple-flow">
+                <div class="flow-item">
+                    <div class="flow-icon">📸</div>
+                    <div class="flow-text">Upload Photo</div>
+                    <div class="flow-desc">Any nude/lingerie photo</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">
+                    <div class="flow-icon">🎭</div>
+                    <div class="flow-text">Choose Scene</div>
+                    <div class="flow-desc">POV, Side view, etc.</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">
+                    <div class="flow-icon">🎬</div>
+                    <div class="flow-text">Get Video!</div>
+                    <div class="flow-desc">Ready in 60 seconds</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">The AI Magic Explained Simply</h3>
+            <div class="info-box">
+                <p>
+                    <strong style="font-size: 20px;">Think of it like Instagram filters, but for video creation!</strong><br><br>
+                    Our AI has studied millions of adult videos and learned how bodies move naturally. When you upload a photo, it creates smooth, realistic movement - like bringing a photo to life. No green screens, no expensive cameras, no technical knowledge needed!
+                </p>
+            </div>
+        </div>
+        
+        <div class="gpu-showcase">
+            <div class="gpu-title">NVIDIA H200 GPUs</div>
+            <div class="gpu-subtitle">The Most Powerful AI Hardware Available</div>
+            <div class="gpu-stats">
+                <div class="gpu-stat">
+                    <div class="gpu-number">60s</div>
+                    <div class="gpu-label">Generation Time</div>
+                </div>
+                <div class="gpu-stat">
+                    <div class="gpu-number">1080p</div>
+                    <div class="gpu-label">Full HD Quality</div>
+                </div>
+                <div class="gpu-stat">
+                    <div class="gpu-number">95%</div>
+                    <div class="gpu-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Workflows -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h1 class="page-title">Professional NSFW Templates</h1>
+            <p class="page-subtitle">Pre-Configured for Popular Adult Content Styles</p>
+        </div>
+        
+        <div class="workflow-grid">
+            <div class="workflow-card">
+                <span class="workflow-category">POV</span>
+                <div class="workflow-name">POV Missionary</div>
+                <div class="workflow-desc">First-person perspective missionary position with realistic movement</div>
+                <div class="workflow-tags">
+                    <span class="tag">Most Popular</span>
+                    <span class="tag">Intimate</span>
+                    <span class="tag">Sheer.com Hit</span>
+                </div>
+            </div>
+            
+            <div class="workflow-card">
+                <span class="workflow-category">POV</span>
+                <div class="workflow-name">POV Blowjob</div>
+                <div class="workflow-desc">First-person oral scenes with climax options</div>
+                <div class="workflow-tags">
+                    <span class="tag">High Demand</span>
+                    <span class="tag">Customizable</span>
+                    <span class="tag">Top Earner</span>
+                </div>
+            </div>
+            
+            <div class="workflow-card">
+                <span class="workflow-category">Side View</span>
+                <div class="workflow-name">Side Missionary</div>
+                <div class="workflow-desc">Professional side-angle intimate scenes</div>
+                <div class="workflow-tags">
+                    <span class="tag">Cinematic</span>
+                    <span class="tag">Studio Quality</span>
+                </div>
+            </div>
+            
+            <div class="workflow-card">
+                <span class="workflow-category">Side View</span>
+                <div class="workflow-name">Side Blowjob</div>
+                <div class="workflow-desc">Side-angle oral scenes with dynamic movement</div>
+                <div class="workflow-tags">
+                    <span class="tag">Professional</span>
+                    <span class="tag">Clear View</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-box" style="background: linear-gradient(135deg, #10b981, #34d399);">
+            <h3 style="margin-bottom: 15px; font-size: 28px;">💰 Early Adopter Opportunity</h3>
+            <p style="font-size: 20px;">Be among the first to leverage AI for adult content creation. The market is just beginning to understand the potential!</p>
+        </div>
+    </div>
+
+    <!-- Current Features -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h1 class="page-title">Features That Make Money</h1>
+            <p class="page-subtitle">Everything Adult Content Creators Need</p>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">🎬 Video Generation Features</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="feature-box">
+                    <h4>Multiple Lengths</h4>
+                    <p>5, 10, or 15-second videos perfect for teasers and full content</p>
+                </div>
+                <div class="feature-box">
+                    <h4>HD Quality</h4>
+                    <p>720p or 1080p resolution - crystal clear on any device</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Batch Creation</h4>
+                    <p>Generate up to 10 videos at once for maximum efficiency</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Custom Prompts</h4>
+                    <p>Add specific movements or actions to match your vision</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Instant Download</h4>
+                    <p>MP4 format ready for any platform - no conversion needed</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">🎨 Image Generation Mode</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;">
+                <div class="feature-box">
+                    <h4>Text to NSFW</h4>
+                    <p>Describe your scene, get 4 variations instantly</p>
+                </div>
+                <div class="feature-box">
+                    <h4>HD Upscaling</h4>
+                    <p>Make images extra crispy for close-ups</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Multiple Styles</h4>
+                    <p>Realistic, artistic, or fantasy options</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Batch Download</h4>
+                    <p>Get all images in one ZIP file</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">💼 Works Everywhere</h3>
+            <div class="feature-box" style="padding: 50px; background: #2a2a2a;">
+                <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 40px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 64px; margin-bottom: 15px;">💻</div>
+                        <p style="font-weight: 600; color: #E7331D; font-size: 20px;">Desktop</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 64px; margin-bottom: 15px;">📱</div>
+                        <p style="font-weight: 600; color: #E7331D; font-size: 20px;">Mobile</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 64px; margin-bottom: 15px;">🖥️</div>
+                        <p style="font-weight: 600; color: #E7331D; font-size: 20px;">Tablet</p>
+                    </div>
+                </div>
+                <p style="font-size: 24px; text-align: center; font-weight: 500;">Create content anywhere, anytime on any platform</p>
+                <p style="font-size: 18px; text-align: center; color: #b8b8b8; margin-top: 20px;">Windows • MacOS • iOS • Android • Chrome • Safari • Firefox</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Features -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h1 class="page-title">Coming Soon: Body Customization</h1>
+            <p class="page-subtitle">Create Your Perfect Performer</p>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">🎮 Real-Time Character Designer</h3>
+            <p style="font-size: 20px; margin-bottom: 40px; color: #e0e0e0;">Adjust body features with simple sliders and see changes instantly. Create any body type you want!</p>
+            
+            <div class="feature-box" style="padding: 40px; background: #2a2a2a;">
+                <h4 style="margin-bottom: 35px; color: #E7331D; text-align: center; font-size: 26px;">Customizable Features</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div>
+                        <h5 style="color: #fff; margin-bottom: 8px; font-size: 18px;">Breast Size</h5>
+                        <p style="font-size: 16px; color: #b8b8b8;">From A to G cup with natural physics</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #fff; margin-bottom: 8px; font-size: 18px;">Ass Size</h5>
+                        <p style="font-size: 16px; color: #b8b8b8;">Petite to extra curvy options</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #fff; margin-bottom: 8px; font-size: 18px;">Hair Length & Color</h5>
+                        <p style="font-size: 16px; color: #b8b8b8;">Any style and color combination</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #fff; margin-bottom: 8px; font-size: 18px;">Skin Tone</h5>
+                        <p style="font-size: 16px; color: #b8b8b8;">Full range of realistic skin tones</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #fff; margin-bottom: 8px; font-size: 18px;">Body Type</h5>
+                        <p style="font-size: 16px; color: #b8b8b8;">Skinny, athletic, curvy, BBW</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #fff; margin-bottom: 8px; font-size: 18px;">Height</h5>
+                        <p style="font-size: 16px; color: #b8b8b8;">From 4'10" to 6'2"</p>
+                    </div>
+                    <div style="grid-column: span 2; text-align: center;">
+                        <h5 style="color: #fff; margin-bottom: 8px; font-size: 18px;">Age Appearance</h5>
+                        <p style="font-size: 16px; color: #b8b8b8;">18-50 year old looks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">Additional Upcoming Features</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;">
+                <div class="feature-box">
+                    <h4>Live Preview</h4>
+                    <p>See changes as you adjust sliders in real-time</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Save Presets</h4>
+                    <p>Create a library of your favorite performers</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Mix & Match</h4>
+                    <p>Combine features from different characters</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Custom Scenes</h4>
+                    <p>Choose backgrounds and settings</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Voice & Sounds</h4>
+                    <p>Add moaning and audio automatically</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Multi-Person</h4>
+                    <p>Create threesome and group content</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h3 style="margin-bottom: 15px; font-size: 28px;">Perfect Body, Perfect Scene, Every Time!</h3>
+            <p style="font-size: 20px;">No more searching for the right model - create exactly what your audience wants!</p>
+        </div>
+    </div>
+
+    <!-- Why It Works -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h1 class="page-title">Why Invest in AI Video Generation</h1>
+            <p class="page-subtitle">The Future of Adult Content Creation</p>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">💰 Massive Market Opportunity</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;">
+                <div class="feature-box">
+                    <h4>Growing Market</h4>
+                    <p>Adult content industry worth $97B annually</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Creator Economy</h4>
+                    <p>500K+ Sheer.com creators need content tools</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Technology Advantage</h4>
+                    <p>First-mover in AI adult content generation</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Scalable Model</h4>
+                    <p>SaaS with high margins and low overhead</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">⏱️ Save Time</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <div class="comparison-box negative">
+                    <h4 style="color: #e74c3c; font-size: 24px;">❌ Traditional Way</h4>
+                    <p style="font-size: 36px; font-weight: 700; margin: 20px 0;">2-3 Hours</p>
+                    <p style="color: #b8b8b8;">Setup, filming, editing, uploading</p>
+                </div>
+                <div class="comparison-box positive">
+                    <h4 style="color: #27ae60; font-size: 24px;">✅ XVideos AI</h4>
+                    <p style="font-size: 36px; font-weight: 700; margin: 20px 0;">60 Seconds</p>
+                    <p style="color: #b8b8b8;">Upload photo, click generate, done!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-box" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">
+            <h3 style="margin-bottom: 15px; font-size: 28px;">🚀 Exponential Growth Potential</h3>
+            <p style="font-size: 20px;">AI adoption in adult content is inevitable. Early investors will capture the majority of this $10B+ market opportunity as creators transition from traditional production methods.</p>
+        </div>
+    </div>
+
+    <!-- Final Page -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h1 class="page-title">Investment Opportunity</h1>
+            <p class="page-subtitle">Join Us in Building the Future</p>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">Why Now?</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div class="feature-box">
+                    <h4>Technology Ready</h4>
+                    <p>H200 GPUs make real-time generation possible with unprecedented speed and quality</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Market Demand</h4>
+                    <p>Creators desperately need content tools to keep up with platform demands</p>
+                </div>
+                <div class="feature-box">
+                    <h4>First Mover</h4>
+                    <p>No established competitors in AI adult content generation space</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Proven Team</h4>
+                    <p>Experience in both AI technology and adult industry dynamics</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Clear Path</h4>
+                    <p>From prototype to $100M valuation in 24 months with defined milestones</p>
+                </div>
+                <div class="feature-box">
+                    <h4>High Margins</h4>
+                    <p>90%+ gross margins at scale with minimal operational overhead</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-box" style="margin-top: 50px;">
+            <h2 style="font-size: 32px; margin-bottom: 20px; text-align: center;">The AI Revolution in Adult Content Starts Here</h2>
+            <p style="font-size: 20px; text-align: center;">Join us in building the platform that will power millions of content creators worldwide. This is more than an investment - it's the future of digital intimacy.</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px; padding: 40px; background: #252525; border-radius: 20px; border: 2px solid #353535;">
+            <h4 style="margin-bottom: 20px; color: #E7331D; font-size: 24px;">Built By</h4>
+            <p style="margin: 8px 0; font-size: 20px;"><strong>Serhii Yashyn</strong> - AI Engineer & Adult Tech Pioneer</p>
+            <p style="margin: 8px 0; font-size: 20px;"><strong>WebGroup Czech Republic</strong></p>
+            <p style="margin-top: 25px; font-size: 16px; color: #b8b8b8;">Revolutionizing adult content creation with cutting-edge AI</p>
+        </div>
+    </div>
+</body>
+</html>
