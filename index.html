@@ -507,13 +507,269 @@
             font-size: 22px;
         }
         
-        /* Print Styles */
-        @media print {
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
             .page {
-                page-break-after: always;
+                width: 100%;
+                min-height: auto;
                 margin: 0;
-                background: white;
-                color: black;
+            }
+            
+            .cover {
+                padding: 40px 20px;
+                min-height: 100vh;
+            }
+            
+            .logo {
+                font-size: 56px;
+            }
+            
+            .tagline {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+            
+            .pitch-title {
+                font-size: 28px;
+            }
+            
+            .content-page {
+                padding: 30px 20px;
+                min-height: auto;
+            }
+            
+            .page-header {
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+                line-height: 1.2;
+            }
+            
+            .page-subtitle {
+                font-size: 16px;
+            }
+            
+            .section {
+                margin-bottom: 30px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            
+            .highlight-box {
+                padding: 25px 20px;
+                margin: 20px 0;
+            }
+            
+            .highlight-box h2 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+            
+            .highlight-box h3 {
+                font-size: 20px;
+            }
+            
+            .highlight-box p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            /* Market Stats Mobile */
+            .market-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .stat-card {
+                padding: 30px 20px;
+                min-height: auto;
+            }
+            
+            .stat-number {
+                font-size: 40px;
+            }
+            
+            .stat-label {
+                font-size: 16px;
+            }
+            
+            /* Visual Process Mobile */
+            .visual-process {
+                padding: 25px 15px;
+            }
+            
+            .process-title {
+                font-size: 20px;
+                margin-bottom: 25px;
+            }
+            
+            .simple-flow {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 0;
+            }
+            
+            .flow-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 48px;
+            }
+            
+            .flow-text {
+                font-size: 18px;
+            }
+            
+            .flow-desc {
+                font-size: 14px;
+            }
+            
+            /* GPU Showcase Mobile */
+            .gpu-showcase {
+                padding: 30px 20px;
+            }
+            
+            .gpu-title {
+                font-size: 28px;
+            }
+            
+            .gpu-subtitle {
+                font-size: 16px;
+                margin-bottom: 25px;
+            }
+            
+            .gpu-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .gpu-number {
+                font-size: 36px;
+            }
+            
+            .gpu-label {
+                font-size: 14px;
+            }
+            
+            /* Workflow Cards Mobile */
+            .workflow-grid {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .workflow-card {
+                min-width: 100%;
+                padding: 25px 20px;
+            }
+            
+            .workflow-name {
+                font-size: 20px;
+                padding-right: 80px;
+            }
+            
+            .workflow-desc {
+                font-size: 14px;
+            }
+            
+            .workflow-category {
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+            
+            /* Feature Boxes Mobile */
+            .feature-box {
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .feature-box h4 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            
+            .feature-box p {
+                font-size: 14px;
+            }
+            
+            /* Lists Mobile */
+            li {
+                font-size: 16px;
+                margin-bottom: 15px;
+                padding-left: 30px;
+            }
+            
+            li::before {
+                font-size: 18px;
+                left: 5px;
+            }
+            
+            /* Info Box Mobile */
+            .info-box {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .info-box p {
+                font-size: 16px;
+            }
+            
+            /* Comparison Boxes Mobile */
+            .comparison-box {
+                padding: 25px 20px;
+            }
+            
+            .comparison-box h4 {
+                font-size: 18px;
+            }
+            
+            .comparison-box p {
+                font-size: 16px;
+            }
+            
+            /* Grid Layouts Mobile */
+            div[style*="grid-template-columns"] {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+            
+            /* Works Everywhere Mobile */
+            .feature-box[style*="padding: 50px"] {
+                padding: 30px 20px !important;
+            }
+            
+            .feature-box[style*="padding: 50px"] div[style*="font-size: 64px"] {
+                font-size: 48px !important;
+            }
+            
+            .feature-box[style*="padding: 50px"] p[style*="font-size: 24px"] {
+                font-size: 20px !important;
+            }
+            
+            .feature-box[style*="padding: 50px"] p[style*="font-size: 18px"] {
+                font-size: 16px !important;
+            }
+            
+            /* Final Box Mobile */
+            div[style*="padding: 40px; background: #252525"] {
+                padding: 25px 20px !important;
+            }
+            
+            div[style*="padding: 40px; background: #252525"] h4 {
+                font-size: 20px !important;
+            }
+            
+            div[style*="padding: 40px; background: #252525"] p[style*="font-size: 20px"] {
+                font-size: 16px !important;
             }
         }
     </style>
